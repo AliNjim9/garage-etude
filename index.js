@@ -1,25 +1,43 @@
-const app = require("express")();
-const server = require("http").createServer(app);
+const userRoutes = require('./routes/users');
+const express = require("express");
+const mongoose = require("mongoose");
+const http =require("http");
+const fs = require('fs');
+const path = require('path');
 const cors = require("cors");
-
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
-
-app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.send("Running");
-});
+const app=express();
+
+
+const server = http.createServer({
+    key: fs.readFileSync(path.join(__dirname,'/server.key')),
+    cert: fs.readFileSync(path.join(__dirname,'server.crt'))
+  },app);
+ //const server = https.createServer(app);
+  const io = require('socket.io')(server,{
+    cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }});
+
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+
+app.use(cors());
+app.use('/user',userRoutes);
+
+
+const users = {};
 
 io.on("connection", (socket) => {
   socket.emit("me", socket.id);
-
+    console.log("socket id : "+ socket.id );
   socket.on("callUser", ({ userToCall, signalData, from, name }) => {
     io.to(userToCall).emit("callUser", {
       signal: signalData,
@@ -49,4 +67,14 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
+const CONNECTION_URL='mongodb+srv://ali:ali@cluster0.atffd.mongodb.net/FirstProject?retryWrites=true&w=majority';
+//const CONNECTION_URL = 'mongodb+srv://islem:islem@cluster0.lxjee.mongodb.net/FirstProject';
+
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => server.listen(PORT,'0.0.0.0', () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
+
+app.get('/', (req,res)=>{
+    res.send('Server is running.');
+});

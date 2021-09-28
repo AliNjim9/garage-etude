@@ -4,10 +4,10 @@ import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import { message } from "antd";
 
-//const URL = "https://fathomless-tundra-67025.herokuapp.com/";
-const SERVER_URL = "http://localhost:5000/";
+const URL = "https://garage-etude.herokuapp.com/";
+//const SERVER_URL = "http://localhost:5000/";
 
-export const socket = io(SERVER_URL);
+export const socket = io(URL);
 
 const VideoState = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
