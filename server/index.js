@@ -1,4 +1,4 @@
-const userRoutes = require('./routes/users');
+const userRoutes = require(__dirname + '\\'+'routes/users');
 const express = require("express");
 const mongoose = require("mongoose");
 const http =require("http");
