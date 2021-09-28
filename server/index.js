@@ -1,4 +1,4 @@
-const userRoutes = require('./routes/users.js');
+
 const express = require("express");
 const mongoose = require("mongoose");
 const http =require("http");
@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use(cors());
-app.use('/user',userRoutes);
+//app.use('/user',userRoutes);
 
 
 io.on("connection", (socket) => {
