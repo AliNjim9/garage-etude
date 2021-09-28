@@ -16,7 +16,7 @@ const App = () => {
 					<Route exact path="/auth" component={Auth} />
 					<Route exact path="/home" component={Home} />
 					<Route exact path="/room" component={Room} />
-          <Redirect from="/" to="home" />
+          <Redirect from="/" to="room" />
       </Switch>
       <Footer />
     </Router>

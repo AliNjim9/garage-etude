@@ -8,11 +8,11 @@ import Options from "./components/options/Options";
 import Footer from "./components/Footer/Footer";
 
 const Room = () => {
-  const history = useHistory();
+  /*const history = useHistory();
 
   useEffect(()=>{
     
-  },[history]);
+  },[history]);*/
   return (
     <VideoState>
       <div className="App" style={{ height: "100%", width: "100%" }}>

@@ -16,7 +16,7 @@ const app=express();
     key: fs.readFileSync(path.join(__dirname,'/server.key')),
     cert: fs.readFileSync(path.join(__dirname,'server.crt'))
   },app);*/
- const server = https.createServer(app);
+ const server = http.createServer(app);
   const io = require('socket.io')(server,{
     cors: {
     origin: "*",
