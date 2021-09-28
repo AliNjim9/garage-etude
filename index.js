@@ -11,11 +11,11 @@ const PORT = process.env.PORT || 5000;
 const app=express();
 
 
-const server = http.createServer({
+/*const server = http.createServer({
     key: fs.readFileSync(path.join(__dirname,'/server.key')),
     cert: fs.readFileSync(path.join(__dirname,'server.crt'))
-  },app);
- //const server = https.createServer(app);
+  },app);*/
+ const server = http.createServer(app);
   const io = require('socket.io')(server,{
     cors: {
     origin: "*",
