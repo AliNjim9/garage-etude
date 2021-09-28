@@ -18,7 +18,7 @@ export const Home =()=>{
         sessionStorage.setItem('user', user.result.firstname + ' ' + user.result.lastname);
         
         history.push('/room');
-        //window.location.reload();
+        window.location.reload();
 };
   useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem('profile')));
