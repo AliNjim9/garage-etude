@@ -1,4 +1,4 @@
-const userRoutes = require('./routes/users.js');
+const userRoutes = require('./routes/users');
 const express = require("express");
 const mongoose = require("mongoose");
 const http =require("http");
@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 const app=express();
 
 
-const server = https.createServer({
+const server = http.createServer({
     key: fs.readFileSync(path.join(__dirname,'/server.key')),
     cert: fs.readFileSync(path.join(__dirname,'server.crt'))
   },app);
