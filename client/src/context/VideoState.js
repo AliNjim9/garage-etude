@@ -4,8 +4,8 @@ import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import { message } from "antd";
 
-//const URL = "https://garage-etude.herokuapp.com/";
-const SERVER_URL = "http://localhost:5000/";
+//const URL = "http://localhost:5000/";
+const SERVER_URL = "https://garage-etude.herokuapp.com/";
 
 export const socket = io(SERVER_URL);
 
