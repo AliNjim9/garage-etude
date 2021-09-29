@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-const server = http.createServer({
+const server = https.createServer({
     key: fs.readFileSync(path.join(__dirname,'/server.key')),
     cert: fs.readFileSync(path.join(__dirname,'server.crt'))
   },app);
